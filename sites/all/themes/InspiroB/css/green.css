@@ -1,0 +1,40 @@
+/* Inspiro Colors GREEN */
+
+
+h1, h2, h3, h4, h5, h6 { color: #666666;}
+
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: #666666;}
+
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover { color: #d0e2a3;}
+
+h2 { color: #666666;}
+#navigation .selector { background: #b4d95b;}
+#navigation #main-menu > ul > li > a.active {background: none repeat scroll 0 0 #b4d95b;  color: #FFFFFF;}
+#navigation #main-menu > ul > li > a.active-trail {	background-color: #b4d95b;color: #fff;}
+
+
+body a { color: #666666;}
+
+
+body a:hover { text-decoration: none; color: #d0e2a3;}
+
+.progressbar-yellow .progressbar-inner{background-color:#b4d95b;}
+
+.progressbar .progressbar-inner{background-color:#b4d95b;}
+
+.field-name-field-tags a{ background: #b4d95b; }
+
+.form-submit {background-color:#b4d95b; color:#FFF;}
+
+.links li a {background-color:#b4d95b; color:#FFF;}
+
+
+.links li a:hover {  background-color: #d0e2a3;  color: #FFF;}
+
+.pictured { background-color:#b4d95b; color:#FFF;}
+
+.button { background-color:#b4d95b; color:#FFF;}
+
+.button a:hover { background-color:#d0e2a3; }

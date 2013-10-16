@@ -1,0 +1,30 @@
+
+.logo {
+	float:left;
+}
+
+.features_top_div{
+	
+	float:right;	
+}
+
+
+#navigation { float:left;}
+
+#navigation #main-menu > ul li {  float: left;}
+#main-menu > ul, #main-menu > ul * {float:left;}
+#main-menu > ul li { float: left;}
+
+#header-right {float:right;}
+
+
+
+#firstline{
+	float:left;
+}
+#secondline{
+	float:left;
+}
+.pictured {
+    float: left;
+}

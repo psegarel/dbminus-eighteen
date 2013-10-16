@@ -1,0 +1,77 @@
+
+/* Import Fonts
+------------------------------------------------------------ */
+@import url(http://fonts.googleapis.com/css?family=Maven+Pro:400,900);
+
+body {
+
+font: 14px/1.6 'Maven Pro', sans-serif;
+
+}
+
+.headertxt_fscreen {position: absolute; bottom: 0; right: 0;}
+
+
+.headertxt {
+	width: 100%;
+	margin: 0 auto;
+	clear: both;
+	position: relative;
+	top: 74px;
+}
+#firstline {
+font-family: 'Maven Pro', sans-serif;
+	color: #FFF;
+	font-weight: 400;
+	background-image: url("../images/transparent-bg.png");
+	text-decoration: none;
+	font-size: 34px;
+	padding: 4px 13px 7px;
+	float: left;
+	display: block;
+	line-height: normal;
+}
+#secondline {
+	background-image: url("../images/transparent-bg.png");
+font-family: 'Maven Pro', sans-serif;
+	color: #FFF;
+	text-decoration: none;
+	font-size: 16px;
+	padding: 4px 13px 7px;
+	float: left;
+	display: block;
+	clear: both;
+	white-space: pre-wrap;
+}
+/* Background slide button */
+
+
+#link {
+	float: left;
+	display: block;
+	clear: both;}
+.pictured {
+	font-size: 12px;
+	padding: 9px 16px;
+	text-transform: uppercase;
+	float: left;
+	display: block;
+	clear: both;
+	margin-top: 10px;
+	display: block;
+}
+
+.pictured a {
+	font-size: 16px;
+	letter-spacing: 0;
+	text-transform: none;
+	color: #FFF;
+	text-decoration: none;
+}
+.pictured a:hover {
+	text-decoration: underline;
+}
+#main-menu {font-family: 'Maven Pro', sans-serif; }
+#footer-bottom h2{font-family: 'Maven Pro', sans-serif;}
+/* Background slide controls (buttons) */
+

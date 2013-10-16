@@ -1,0 +1,72 @@
+
+/* Background slide text */
+/* Import Fonts
+------------------------------------------------------------ */
+@import url(http://fonts.googleapis.com/css?family=Quicksand:400,300,700);
+
+.headertxt_fscreen {position: absolute; bottom: 0; right: 0;}
+
+
+.headertxt {
+	width: 100%;
+	margin: 0 auto;
+	clear: both;
+	position: relative;
+	top: 74px;
+}
+#firstline {	
+font-family: 'Quicksand', sans-serif;
+	color: #FFF;
+	font-weight: 300;
+	background-image: url("../images/transparent-bg.png");
+	text-decoration: none;
+	font-size: 48px;
+	padding: 4px 13px 7px;
+	float: left;
+	display: block;
+	line-height: normal;
+}
+#secondline {
+	background-image: url("../images/transparent-bg.png");	
+font-family: 'Quicksand', sans-serif;
+	color: #FFF;
+	text-decoration: none;
+	font-size: 18px;
+	padding: 4px 13px 7px;
+	float: left;
+	display: block;
+	clear: both;
+	white-space: pre-wrap;
+}
+/* Background slide button */
+
+
+#link {
+	float: left;
+	display: block;
+	clear: both;}
+.pictured {
+	font-family: 'Quicksand', sans-serif;
+	font-size: 12px;
+	padding: 9px 16px;
+	text-transform: uppercase;
+	float: left;
+	display: block;
+	clear: both;
+	margin-top: 10px;
+	display: block;
+}
+.pictured a {
+	font-size: 16px;
+	letter-spacing: 0;
+	text-transform: none;
+	color: #FFF;
+	text-decoration: none;
+}
+.pictured a:hover {
+	text-decoration: underline;
+}
+#main-menu {font-family: 'Quicksand', sans-serif; }
+#footer-bottom h2{ font-family: 'Quicksand', sans-serif;}
+/* Background slide controls (buttons) */
+

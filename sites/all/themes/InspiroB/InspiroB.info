@@ -1,0 +1,75 @@
+name = Inspiro B
+description = Premium theme for Drupal 7.
+core = 7.x
+engine = phptemplate
+
+
+stylesheets[all][] = css/style.css
+stylesheets[all][] = css/menus.css
+stylesheets[all][] = css/responsive.css
+
+
+scripts[] = js/script.js
+scripts[] = js/responsive.js
+scripts[] = js/uniform.js
+
+regions[header_features]= Header Features
+regions[header_left]    = Header Left
+regions[header_right]   = Header Right
+regions[content_top]    = Content Top
+regions[content] 	= Content
+regions[sidebar_first]  = First Sidebar
+regions[help]           = Help
+regions[footer]         = Footer
+
+features[] = logo
+features[] = name
+features[] = slogan
+features[] = node_user_picture
+features[] = comment_user_picture
+features[] = comment_user_verification
+features[] = favicon
+features[] = main_menu
+features[] = secondary_menu
+
+settings[language_links] = TRUE
+settings[social_links] = TRUE
+
+settings[twitter_username] = "twitter"
+settings[facebook_username] = "facebook"
+
+settings[menu_element] = main-menu
+
+settings[default_banners][1][image_path]        = images/slide/1.jpg
+settings[default_banners][1][image_title]       = Title for slideshow image 1
+settings[default_banners][1][image_description] = Description for slideshow image 1
+settings[default_banners][1][image_published]   = TRUE
+
+settings[default_banners][2][image_path]        = images/slide/2.jpg
+settings[default_banners][2][image_title]       = Title for slideshow image 2
+settings[default_banners][2][image_description] = Description for slideshow image 2
+settings[default_banners][2][image_published]   = TRUE
+
+settings[default_banners][3][image_path]        = images/slide/3.jpg
+settings[default_banners][3][image_title]       = Title for slideshow image 3
+settings[default_banners][3][image_description] = Description for slideshow image 3
+settings[default_banners][3][image_published]   = TRUE
+
+settings[slideshowSpeed] = 10
+settings[slideshowEffect] = fade
+settings[colors] = none.css
+settings[homepage] = template.css
+settings[backgroundPattern] = FALSE 
+settings[backgroundControls] = TRUE
+settings[backgroundText] = TRUE
+settings[backgroundButton] = TRUE
+settings[backgroundButtonText] = VIEW MORE
+
+variables[admin_theme] = 'seven'
+
+; Information added by drupal.org packaging script on 2013-03-06
+project = "InspiroB"
+datestamp = "1352325857"
+
+
+

@@ -1,0 +1,7 @@
+; Packaging information for inspiro_
+name = "InspiroB - demo"
+description = "Install fullsize package with demo content."
+exclusive = "1"
+core = "7.x"
+
+; files[] = inspiro.profile

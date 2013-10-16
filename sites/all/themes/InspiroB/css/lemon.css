@@ -1,0 +1,43 @@
+/* Inspiro Colors RED */
+
+
+h1, h2, h3, h4, h5, h6 { color: #666666;}
+
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: #999999;}
+
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover { color: #fdcb90;}
+
+h2 { color: #666666;}
+
+
+#navigation .selector { background: #f7cf43;}
+
+#navigation #main-menu > ul > li > a.active {background: none repeat scroll 0 0 #f7cf43;  color: #FFFFFF; color:#fff; text-shadow:1px 1px #939495;}
+#navigation #main-menu > ul > li > a.active-trail {	background-color: #f7cf43;color: #fff; text-shadow:1px 1px #939495;}
+
+
+body a { color: #f7cf43;}
+
+
+body a:hover { text-decoration: none; color: #CC9999;}
+
+.progressbar-yellow .progressbar-inner{background-color:#f7cf43;}
+
+.progressbar .progressbar-inner{background-color:#f7cf43;}
+
+.field-name-field-tags a{ background: #f7cf43; }
+
+.form-submit {background-color:#f7cf43; color:#fff; text-shadow:1px 1px #939495;}
+
+.links li a {background-color:#f7cf43; color:#fff; text-shadow:1px 1px #939495;}
+
+
+.links li a:hover {  background-color: #CC9999;  color: #fff; text-shadow:1px 1px #939495;}
+
+.pictured { background-color:#f7cf43; color:#fff; text-shadow:1px 1px #939495;}
+
+.button { background-color:#f7cf43; color:#fff; text-shadow:1px 1px #939495;}
+
+.button a:hover { background-color:#CC9999; }

@@ -1,0 +1,56 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+  direction:rtl;
+
+}
+
+
+.logo {
+	float:right;
+}
+
+.features_top_div{
+	
+	float:left;	
+}
+
+
+#navigation { float:right;}
+
+#navigation #main-menu > ul li {  float: right;}
+#main-menu > ul, #main-menu > ul * {float:right;}
+#main-menu > ul li { float: right;}
+
+#header-right {float:left;}
+
+
+
+#firstline{
+	float:right;
+}
+#secondline{
+	float:right;
+}
+.pictured {
+    float: right;
+}
+
+
+#footer-bottom h2, p{text-align:right;}
+.form-submit {float:right;}
+
+#contactinfo .adr, .phone{text-align:right;}
+
+#contactinfo .tel {
+    background: url("../images/phone.png") no-repeat;
+	background-position:right; 
+	padding-right:20px;
+}
+#contactinfo .email{	background-position:right; 
+	padding-right:20px; text-align:right;}
+

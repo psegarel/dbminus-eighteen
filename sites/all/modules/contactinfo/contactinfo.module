@@ -1,0 +1,453 @@
+<?php
+
+/**
+ * @file
+ * Collects contact information and displays it in an hCard block.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function contactinfo_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#contactinfo':
+      $output = '<p>' . t('Contact information that you provide will be displayed on the site in the <a href="http://microformats.org/wiki/hcard">hCard microformat</a>. An hCard is a small bundle of code that you want to put on your web site so that Google Maps (and other mapping services) can more easily index the site&rsquo;s location information.') . '</p>';
+      return $output;
+
+    case 'admin/config/system/contactinfo':
+      return '<p>' . t("Enter your site’s contact information into the appropriate fields. All fields are optional.") . '</p>';
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function contactinfo_permission() {
+  return array(
+    'administer contactinfo' => array(
+      'title' => t('Administer contact information'),
+      'description' => t('Edit contact information for this site.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function contactinfo_menu() {
+  $items['admin/config/system/contactinfo'] = array(
+    'title' => 'Contact information',
+    'description' => 'Configure contact information that is publicly displayed on this site.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('contactinfo_admin_settings'),
+    'access arguments' => array('administer contactinfo'),
+    'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function contactinfo_theme($existing, $type, $theme, $path) {
+  return array(
+    'contactinfo_admin_settings' => array(
+      'render element' => 'form',
+    ),
+    'contactinfo' => array(
+      'variables' => array(
+        'contactinfo' => NULL,
+        'type' => 'personal',
+        'given_name' => NULL,
+        'family_name' => NULL,
+        'org' => NULL,
+        'tagline' => NULL,
+        'street_address' => NULL,
+        'locality' => NULL,
+        'region' => NULL,
+        'postal_code' => NULL,
+        'country' => NULL,
+        'longitude' => NULL,
+        'latitude' => NULL,
+        'phones' => array(),
+        'faxes' => array(),
+        'email' => NULL,
+      ),
+      'template' => 'contactinfo',
+    ),
+  );
+}
+
+/**
+ * Theme preprocess function for the contact information block.
+ *
+ * @param array $variables
+ *   as defined by hook_theme().
+ *   $variable['contactinfo'] is equivalent to contactinfo_get_contactinfo().
+ */
+function template_preprocess_contactinfo(&$variables) {
+  drupal_add_css(drupal_get_path('module', 'contactinfo') . '/css/contactinfo.css');
+
+  // Build $variables from scratch.
+  $contactinfo = $variables['contactinfo'];
+  $variables['type'] = $contactinfo['type'];
+  $variables['given_name'] = check_plain($contactinfo['fn_n']['given-name']);
+  $variables['family_name'] = check_plain($contactinfo['fn_n']['family-name']);
+  $variables['org'] = $contactinfo['use_site_name'] ? check_plain(variable_get('site_name', '')) : check_plain($contactinfo['org']);
+  $variables['street_address'] = check_plain($contactinfo['adr']['street-address']);
+  $variables['locality'] = check_plain($contactinfo['adr']['locality']);
+  $variables['region'] = check_plain($contactinfo['adr']['region']);
+  $variables['postal_code'] = check_plain($contactinfo['adr']['postal-code']);
+  $variables['country'] = check_plain($contactinfo['adr']['country-name']);
+  $variables['longitude'] = check_plain($contactinfo['location']['longitude']);
+  $variables['latitude'] = check_plain($contactinfo['location']['latitude']);
+  $variables['tagline'] = $contactinfo['use_site_slogan'] ? check_plain(variable_get('site_slogan', '')) : check_plain($contactinfo['tagline']);
+
+  // Generate formatted longitude and latitude.
+  $variables['longitude_formatted'] = contactinfo_coord_convert($variables['longitude'], 'longitude');
+  $variables['latitude_formatted'] = contactinfo_coord_convert($variables['latitude'], 'latitude');
+
+  // Generates the output for the 'phones' variable.
+  if ($contactinfo['phone']['voice']) {
+    $phone_text = check_plain($contactinfo['phone']['voice']);
+    $phones = explode(',', $phone_text);
+    $variables['phones'] = array_map('trim', $phones);
+  }
+
+  // Generates the output for the 'faxes' variable.
+  if ($contactinfo['phone']['fax']) {
+    $fax_text = check_plain($contactinfo['phone']['fax']);
+    $faxes = explode(',', $fax_text);
+    $variables['faxes'] = array_map('trim', $faxes);
+  }
+
+  // Generate the output for the 'email' variable.
+  if ($contactinfo['email']) {
+    $email = check_plain($contactinfo['email']);
+    // Use obfuscation provided by invisimail module.
+    if (function_exists('invisimail_encode_html')) {
+      $variables['email'] = invisimail_encode_html($email);
+      $variables['email_url'] = INVISIMAIL_MAILTO_ASCII . $variables['email'];
+    }
+    else {
+      $variables['email'] = $email;
+      $variables['email_url'] = 'mailto:' . $email;
+    }
+  }
+
+  // Generate ID.
+  $id = 'contactinfo';
+  if ($contactinfo['type'] == 'personal') {
+    $id .= !empty($contactinfo['fn_n']['given-name']) ? '-' . check_plain($contactinfo['fn_n']['given-name']) : '';
+    $id .= !empty($contactinfo['fn_n']['family-name']) ? '-' . check_plain($contactinfo['fn_n']['family-name']) : '';
+  }
+  else {
+    $id .= !empty($contactinfo['org']) ? '-' . check_plain($contactinfo['org']) : '';
+  }
+  $variables['id'] = drupal_html_id($id);
+}
+
+/**
+ * Contact Info settings form.
+ */
+function contactinfo_admin_settings($form, &$form_state) {
+  $default_values = contactinfo_get_contactinfo();
+
+  $form = array();
+  $path = drupal_get_path('module', 'contactinfo');
+  $form['#tree'] = TRUE;
+  $form['#attached'] = array(
+    'css' => array(
+      array(
+        'data' => $path . '/css/contactinfo.admin.css',
+        'type' => 'file',
+      ),
+    ),
+    'js' => array(
+      $path . '/contactinfo.admin.js',
+      array(
+        'data' => array(
+          'siteName' => check_plain(variable_get('site_name', '')),
+          'siteSlogan' => check_plain(variable_get('site_slogan', '')),
+        ),
+        'type' => 'setting',
+      ),
+    ),
+  );
+
+  $form['contactinfo']['type'] = array(
+    '#type' => 'radios',
+    '#title' => t('Contact information type'),
+    '#description' => t('Is this for a business or an individual?'),
+    '#options' => array(
+      'personal' => t('Personal'),
+      'business' => t('Organization/Business'),
+    ),
+    '#default_value' => $default_values['type'],
+  );
+  $form['contactinfo']['fn_n'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Full Name'),
+    '#description' => t('If this site is your personal site, enter your full name here.'),
+    '#states' => array(
+      // Hide this fieldset if type is set to “business”.
+      'invisible' => array(
+        ':input[name="contactinfo[type]"]' => array('value' => 'business'),
+      ),
+    ),
+    '#prefix' => '<div id="edit-hcard-fn-n-wrapper">',
+    '#suffix' => '</div>',
+  );
+  $form['contactinfo']['fn_n']['given-name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('First Name'),
+    '#description' => t('Your first name.'),
+    '#default_value' => $default_values['fn_n']['given-name'],
+  );
+  $form['contactinfo']['fn_n']['family-name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Last Name'),
+    '#description' => t('Your last name.'),
+    '#default_value' => $default_values['fn_n']['family-name'],
+  );
+  $form['contactinfo']['org'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Organization/Business Name'),
+    '#default_value' => $default_values['org'],
+    '#description' => t('The name of your organization or business.'),
+    '#prefix' => '<div class="contactinfo-org-wrapper clearfix">',
+  );
+  $form['contactinfo']['use_site_name'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use site name'),
+    '#default_value' => $default_values['use_site_name'],
+    '#suffix' => '</div>',
+  );
+  $form['contactinfo']['tagline'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Tagline'),
+    '#default_value' => $default_values['tagline'],
+    '#description' => t('A short tagline.'),
+    '#prefix' => '<div class="contactinfo-tagline-wrapper clearfix">',
+  );
+  $form['contactinfo']['use_site_slogan'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use site slogan'),
+    '#default_value' => $default_values['use_site_slogan'],
+    '#suffix' => '</div>',
+  );
+  $form['contactinfo']['adr'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Address'),
+    '#description' => t('Enter the contact address for this website.'),
+  );
+  $form['contactinfo']['adr']['street-address'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Street Address'),
+    '#default_value' => $default_values['adr']['street-address'],
+  );
+  $form['contactinfo']['adr']['locality'] = array(
+    '#type' => 'textfield',
+    '#title' => t('City'),
+    '#default_value' => $default_values['adr']['locality'],
+  );
+  $form['contactinfo']['adr']['region'] = array(
+    '#type' => 'textfield',
+    '#title' => t('State/Province'),
+    '#default_value' => $default_values['adr']['region'],
+    '#size' => 10,
+  );
+  $form['contactinfo']['adr']['postal-code'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Postal Code'),
+    '#default_value' => $default_values['adr']['postal-code'],
+    '#size' => 10,
+  );
+  $form['contactinfo']['adr']['country-name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Country'),
+    '#default_value' => $default_values['adr']['country-name'],
+  );
+  $form['contactinfo']['location'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Geographical Location'),
+    '#description' => t('Enter your geographical coordonates to help people locate you.'),
+  );
+  $form['contactinfo']['location']['longitude'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Longitude'),
+    '#default_value' => $default_values['location']['longitude'],
+    '#description' => t('Longitude, in full decimal format (like -121.629562).'),
+  );
+  $form['contactinfo']['location']['latitude'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Latitude'),
+    '#default_value' => $default_values['location']['latitude'],
+    '#description' => t('Latitude, in full decimal format (like 38.827382).'),
+  );
+  $form['contactinfo']['phone'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Phones'),
+    '#description' => t('Enter the numbers at which you would like to be reached.'),
+  );
+  $form['contactinfo']['phone']['voice'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Voice Phone Number(s)'),
+    '#default_value' => $default_values['phone']['voice'],
+    '#description' => t('Voice phone numbers, separated by commas.'),
+  );
+  $form['contactinfo']['phone']['fax'] = array(
+    '#type' => 'textfield',
+    '#title' => t('FAX Number(s)'),
+    '#default_value' => $default_values['phone']['fax'],
+    '#description' => t('Fax numbers, separated by commas.'),
+  );
+  $form['contactinfo']['email'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email'),
+    '#default_value' => $default_values['email'],
+    '#description' => t('Enter this site’s contact email address. This address will be displayed publicly, do not enter a private address.'),
+    '#element_validate' => array('contactinfo_validate_email'),
+  );
+
+  if (module_exists('invisimail')) {
+    $form['contactinfo']['email']['#description'] .= ' ' . t('This address will be obfuscated to protect it from spammers.');
+  }
+  else {
+    $form['contactinfo']['email']['#description'] .= ' ' . t('Install the <a href="!url" target="_blank">Invisimail</a> module to protect this address from spammers.', array('!url' => 'http://drupal.org/project/invisimail'));
+  }
+
+  return system_settings_form($form);
+}
+
+/**
+ * Validate an email address.
+ */
+function contactinfo_validate_email($element, &$form_state) {
+  if (!empty($element['#value']) && !valid_email_address($element['#value'])) {
+    form_error($element, t('You must enter a valid e-mail address.'));
+  }
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function contactinfo_block_info() {
+  $blocks['hcard'] = array(
+    'info' => 'Contact information',
+    'weight' => 10,
+    'enabled' => 1,
+    'region' => 'footer',
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function contactinfo_block_view($delta) {
+  $block = array();
+  switch ($delta) {
+    case 'hcard':
+      $contactinfo = contactinfo_get_contactinfo();
+      if ($contactinfo) {
+        $block = array(
+          'subject' => '',
+          'content' => theme('contactinfo', array('contactinfo' => $contactinfo)),
+        );
+      }
+      return $block;
+  }
+}
+
+/**
+ * Theme function for the Contact Info settings form.
+ *
+ * It's just a wrapper so that themers can do what they want with this form.
+ */
+function theme_contactinfo_admin_settings($variables) {
+  $form = $variables['form'];
+  return drupal_render_children($form);
+}
+
+/**
+ * Implements hook_contextual_links_view_alter().
+ *
+ * @param array $element
+ *   A renderable array representing the contextual links.
+ * @param array $items
+ *   An associative array containing the original contextual link items, as
+ *   generated by menu_contextual_links(), which were used to build
+ *   $element['#links'].
+ */
+function contactinfo_contextual_links_view_alter(&$element, $items) {
+  $block = isset($element['#element']['#block']) ? $element['#element']['#block'] : NULL;
+  if (is_object($block) && $block->module == 'contactinfo' && user_access('administer contactinfo')) {
+    $element['#links']['contactinfo-edit'] = array(
+      'title' => t('Edit information'),
+      'href' => 'admin/config/system/contactinfo',
+      'query' => drupal_get_destination(),
+      'attributes' => array(
+        'title' => t('Edit your contact information'),
+      ),
+    );
+  }
+}
+
+/**
+ * Helper function to convert longitude or latitude points.
+ *
+ * Convert a decimal-degree longitude or latitude point into degrees and
+ * decimal minutes.
+ *
+ * @param float $decimal
+ *   Decimal value for a longitude or latitude point.
+ * @param string $direction
+ *   Strings 'longitude' or 'latitude' are the only acceptable inputs.
+ *
+ * @return string
+ *   String containing a single character for N, S, E, or W, the degrees as
+ *   whole number, and minutes as a decimal value.
+ */
+function contactinfo_coord_convert($decimal, $direction) {
+  $decimal = floatval($decimal);
+  if (!$decimal) {
+    return FALSE;
+  }
+  switch ($direction) {
+    case 'longitude':
+      $coord_direction = ($decimal < 0) ? 'W' : 'E';
+      break;
+
+    case 'latitude':
+      $coord_direction = ($decimal < 0) ? 'S' : 'N';
+      break;
+
+    default:
+      return FALSE;
+  }
+
+  $coord_degrees = intval($decimal);
+  $coord_minutes = abs(fmod($decimal, 1) * 60);
+
+  return $coord_direction . ' ' . $coord_degrees . '° ' . $coord_minutes . '"';
+}
+
+/**
+ * Helper function to return saved contact information.
+ *
+ * @return array
+ *   All contact information saved from the settings form.
+ */
+function contactinfo_get_contactinfo() {
+  // Get variable defaults.
+  module_load_include('inc', 'contactinfo', 'includes/contactinfo.variable');
+  $variables = contactinfo_variable_info(array());
+  $default = $variables['contactinfo']['default'];
+
+  // Get saved contact information.
+  $contactinfo = variable_get('contactinfo', $default);
+
+  // Merge default values and saved data to ensure all array keys are present.
+  return array_merge($default, $contactinfo);
+}

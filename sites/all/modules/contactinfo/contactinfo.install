@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Installation file for the Contact Information module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function contactinfo_uninstall() {
+  variable_del('contactinfo');
+}

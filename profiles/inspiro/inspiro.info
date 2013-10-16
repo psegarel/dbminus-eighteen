@@ -1,0 +1,7 @@
+; Packaging information for inspirob
+name = "InspiroB"
+description = "Clean install package without content"
+exclusive = "1"
+core = "7.x"
+
+; files[] = inspiro.profile

@@ -1,0 +1,108 @@
+
+
+
+/* Inspiro B Navigation */
+
+
+
+
+
+#navigation { position: relative; display:block; height:80px; width: 620px;}
+
+
+
+
+
+/*hide responsive navigation*/
+
+
+#top-bar .selector,#navigation .selector { display: none;}
+
+
+
+
+
+/*nav*/
+
+
+#main-menu > ul, #main-menu > ul * { margin: 0; padding: 0; list-style: none;}
+
+
+#main-menu > ul { line-height: 1.0;}
+
+
+#main-menu > ul ul {position: absolute; top: -999em; width: 180px;}
+
+
+#main-menu > ul ul li {width: 100%;}
+
+
+#main-menu > ul li:hover {visibility: inherit;}
+
+
+#main-menu > ul li { position: relative;}
+
+
+#main-menu > ul a { display: block; position: relative;}
+
+
+#main-menu > ul li:hover ul, #main-menu > ul li.sfHover ul {left: 0px; top: 40px; z-index: 99;}
+
+
+#main-menu > ul li:hover li ul, #main-menu > ul li.sfHover li ul { top: -999em;}
+
+
+#main-menu > ul li li:hover ul, #main-menu > ul li li.sfHover ul { left: 180px; top: 1px;}
+
+
+#navigation #main-menu > ul > li:hover > ul, #main-menu > ul li.sfHover > ul { top: 70px;}
+
+
+#navigation #main-menu > ul li li:hover ul, #main-menu > ul li li.sfHover ul, #main-menu > ul li li:hover ul, #main-menu > ul li li.sfHover ul { left: 200px; top: -10px;}
+
+
+#navigation #main-menu > ul a { font-size: 1em; height: 80px; line-height: 80px; color: #898989; padding: 0 15px; text-decoration: none;}
+
+
+#navigation #main-menu .expanded > ul a { font-size: 13px; height: 32px; line-height: 32px; color: #aaa; padding: 0 15px; text-decoration: none;} 
+
+
+#navigation #main-menu > ul li { position: relative;}
+
+
+#navigation #main-menu > ul > li > a:hover {background-color: #666666;color: #fff;}
+
+
+#navigation #main-menu > ul > li > a.active {line-height: 80px; height:80px;}
+
+
+#navigation #main-menu > ul > li.sfHover > a, #navigation a.active, #navigation a.active:hover, #navigation #main-menu li > a.active-trail{ background-color: #858585;	color: #fff;}
+
+
+
+
+
+
+
+
+/*drop-down styles*/
+
+
+#navigation #main-menu > ul ul { line-height: 80px; height:80px; position: absolute; nowhitespace: afterproperty; top: -999em; width: 200px; z-index: 9999; left: 0; border-radius: 2px;}
+
+
+#navigation #main-menu > ul ul li {	background-color: #666666;color: #fff;top:10px;}
+
+
+#navigation #main-menu > ul ul li:first-child { border-top: 0;}
+
+
+#navigation #main-menu > ul ul li:last-child { border-bottom: 0;}
+
+
+#navigation #main-menu > ul ul a { display: block;  padding: 10px;  color: #fff;  height: auto;  margin: 0px;  border: 0px;  font-size: 0.929em;  font-weight: normal;  text-shadow: none;}
+
+
+#navigation #main-menu > ul ul li > a:hover {  background-color: #858585;  color:#FFF;}
+
+

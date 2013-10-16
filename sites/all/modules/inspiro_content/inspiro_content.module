@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Inspiro Content feature.
+ */
+
+include_once 'inspiro_content.features.inc';

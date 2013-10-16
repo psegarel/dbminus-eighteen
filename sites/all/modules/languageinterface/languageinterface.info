@@ -1,0 +1,17 @@
+name = Consistent Language Interface
+description = Creates an independent language interface block.
+dependencies[] = locale
+package = Multilanguage
+
+core = 7.x
+project = "languageinterface"
+
+files[] = languageinterface.module
+
+
+; Information added by drupal.org packaging script on 2011-10-11
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "languageinterface"
+datestamp = "1318293126"
+
