@@ -1,0 +1,6 @@
+<?php
+
+function minus18_preprocess_page(&$variables)
+{
+	//kpr($variables);
+}
