@@ -2,5 +2,9 @@
 
 function minus18_preprocess_page(&$variables)
 {
-	//kpr($variables);
+	if( isset($variables['node']) ){
+		if($variables['node']->type == 'portfolio'){
+			//whatever happens here!
+		}
+	}
 }

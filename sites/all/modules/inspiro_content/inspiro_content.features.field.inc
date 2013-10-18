@@ -133,7 +133,7 @@ function inspiro_content_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => 'content',
-            'image_style' => 'blog_picture',
+            'image_style' => '',
           ),
           'type' => 'image',
           'weight' => '0',
@@ -280,7 +280,7 @@ function inspiro_content_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => 'blog_picture_content',
+            'image_style' => '',
           ),
           'type' => 'image',
           'weight' => '0',
@@ -290,7 +290,7 @@ function inspiro_content_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => 'content',
-            'image_style' => 'news_picture',
+            'image_style' => '',
           ),
           'type' => 'image',
           'weight' => '0',

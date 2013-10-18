@@ -37,6 +37,7 @@ function inspiro_content_image_default_styles() {
         'weight' => '-10',
       ),
     ),
+    'label' => 'blog_picture',
   );
 
   // Exported image style: blog_picture_content.
@@ -59,6 +60,7 @@ function inspiro_content_image_default_styles() {
         'weight' => '1',
       ),
     ),
+    'label' => 'blog_picture_content',
   );
 
   // Exported image style: news_picture.
@@ -81,6 +83,7 @@ function inspiro_content_image_default_styles() {
         'weight' => '1',
       ),
     ),
+    'label' => 'news_picture',
   );
 
   // Exported image style: portfolio_project_images.
@@ -103,6 +106,7 @@ function inspiro_content_image_default_styles() {
         'weight' => '1',
       ),
     ),
+    'label' => 'portfolio_project_images',
   );
 
   // Exported image style: portfolio_thumbnail.
@@ -125,6 +129,7 @@ function inspiro_content_image_default_styles() {
         'weight' => '1',
       ),
     ),
+    'label' => 'portfolio_thumbnail',
   );
 
   return $styles;
@@ -155,14 +160,6 @@ function inspiro_content_node_info() {
       'name' => t('Portfolio'),
       'base' => 'node_content',
       'description' => '',
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-    'simplenews' => array(
-      'name' => t('Simplenews newsletter'),
-      'base' => 'node_content',
-      'description' => t('A newsletter issue to be sent to subscribed email addresses.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

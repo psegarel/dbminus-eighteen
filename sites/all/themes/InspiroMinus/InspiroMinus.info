@@ -1,0 +1,16 @@
+name = Inspiro Minus
+description = This is a sub-theme of theme InspiroB
+core = 7.x
+
+base theme = InspiroB
+
+stylesheets[all][] = css/local.css
+
+regions[header_features]= Header Features
+regions[header_left]    = Header Left
+regions[header_right]   = Header Right
+regions[content_top]    = Content Top
+regions[content] 	= Content
+regions[sidebar_first]  = First Sidebar
+regions[help]           = Help
+regions[footer]         = Footer

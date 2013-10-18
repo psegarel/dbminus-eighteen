@@ -410,7 +410,7 @@ function inspiro_content_views_default_views() {
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '1000',
   );
-  /* Field: Content: Picture */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
   $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
@@ -418,11 +418,6 @@ function inspiro_content_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_picture']['element_wrapper_class'] = 'pic_left';
   $handler->display->display_options['fields']['field_picture']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_picture']['settings'] = array(
-    'image_style' => 'medium',
-    'image_link' => 'content',
-  );
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -631,7 +626,7 @@ function inspiro_content_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Portfolio';
+  $handler->display->display_options['title'] = 'Flavours';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -642,7 +637,7 @@ function inspiro_content_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['row_class'] = 'views-row';
-  $handler->display->display_options['style_options']['columns'] = '2';
+  $handler->display->display_options['style_options']['columns'] = '3';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -673,6 +668,7 @@ function inspiro_content_views_default_views() {
   $handler->display->display_options['fields']['field_client']['table'] = 'field_data_field_client';
   $handler->display->display_options['fields']['field_client']['field'] = 'field_client';
   $handler->display->display_options['fields']['field_client']['label'] = 'Client:';
+  $handler->display->display_options['fields']['field_client']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_client']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_client']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['field_client']['element_wrapper_class'] = 'portfolio-client';
@@ -701,16 +697,16 @@ function inspiro_content_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-  $handler->display->display_options['path'] = 'portfolio';
-  $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Portfolio';
-  $handler->display->display_options['menu']['description'] = 'Portfolio';
-  $handler->display->display_options['menu']['weight'] = '5';
+  $handler->display->display_options['path'] = 'flavours';
+  $handler->display->display_options['menu']['title'] = 'Flavours';
+  $handler->display->display_options['menu']['description'] = 'Flavours';
+  $handler->display->display_options['menu']['weight'] = '';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['portfolio'] = array(
     t('Master'),
-    t('Portfolio'),
+    t('Flavours'),
     t('more'),
     t('Apply'),
     t('Reset'),
