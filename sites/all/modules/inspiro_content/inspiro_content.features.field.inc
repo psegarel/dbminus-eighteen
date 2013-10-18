@@ -510,9 +510,8 @@ function inspiro_content_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'inline',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '0',
         ),
         'teaser' => array(

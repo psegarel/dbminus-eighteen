@@ -40,7 +40,7 @@ function inspiro_content_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-47',
+    'weight' => '-46',
   );
   // Exported menu link: main-menu:contact
   $menu_links['main-menu:contact'] = array(
@@ -58,7 +58,7 @@ function inspiro_content_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '1',
-    'weight' => '-46',
+    'weight' => '-47',
   );
   // Exported menu link: main-menu:news
   $menu_links['main-menu:news'] = array(
