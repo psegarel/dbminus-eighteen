@@ -8,3 +8,8 @@ function minus18_preprocess_page(&$variables)
 		}
 	}
 }
+
+
+function minus18_preprocess_block(&$variables)
+{
+}
