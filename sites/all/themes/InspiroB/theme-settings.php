@@ -212,9 +212,9 @@ function InspiroB_form_system_theme_settings_alter(&$form, &$form_state)
     return $form;
 }
 /**
-
+*
 * Save settings data.
-
+*
 */
 function InspiroB_settings_submit($form, &$form_state)
 {
@@ -246,9 +246,9 @@ function InspiroB_settings_submit($form, &$form_state)
     InspiroB_set_banners($settings);
 }
 /**
-
+*
 * Provvide default installation settings for marinelli.
-
+*
 */
 function _InspiroB_install()
 {
@@ -274,35 +274,35 @@ function _InspiroB_install()
     variable_set('theme_InspiroB_first_install', FALSE);
 }
 /**
-
+*
 * Save file uploaded by user and generate setting to save.
-
 *
-
+*
+*
 * @param <file> $file
-
+*
 *    File uploaded from user
-
 *
-
+*
+*
 * @param <string> $banner_folder
-
+*
 *    Folder where save image
-
 *
-
+*
+*
 * @param <string> $banner_thumb_folder
-
-*    Folder where save image thumbnail
-
 *
-
+*    Folder where save image thumbnail
+*
+*
+*
 * @return <array>
-
+*
 *    Array with file data.
-
+*
 *    FALSE on error.
-
+*
 */
 function _InspiroB_save_image($file, $banner_folder = 'public://inspirob/slide/', $banner_thumb_folder = 'public://inspirob/slide/thumb/')
 {
@@ -333,15 +333,15 @@ function _InspiroB_save_image($file, $banner_folder = 'public://inspirob/slide/'
     return FALSE;
 }
 /**
-
-* Check if folder is available or create it.
-
 *
-
+* Check if folder is available or create it.
+*
+*
+*
 * @param <string> $dir
-
+*
 *    Folder to check
-
+*
 */
 function _InspiroB_check_dir($dir)
 {
@@ -351,21 +351,21 @@ function _InspiroB_check_dir($dir)
     file_prepare_directory($dir, FILE_CREATE_DIRECTORY);
 }
 /**
-
+*
 * Generate form to mange banner informations
-
 *
-
+*
+*
 * @param <array> $image_data
-
-*    Array with image data
-
 *
-
+*    Array with image data
+*
+*
+*
 * @return <array>
-
+*
 *    Form to manage image informations
-
+*
 */
 function _InspiroB_banner_form($image_data)
 {

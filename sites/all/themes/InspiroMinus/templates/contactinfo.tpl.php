@@ -65,13 +65,13 @@
 <?php if ($street_address || $locality || $region || $postal_code || $country): ?>
   <div class="adr">
     <?php if ($street_address): ?>
-      <span class="street-address"><?php print $street_address; ?></span>
+      <div class="street-address"><?php print $street_address; ?></div>
     <?php endif; ?>
     <?php if ($locality): ?>
-      <span class="locality"><?php print $locality; ?></span><?php print $region ? ',' : ''; ?>
+      <div class="locality"><?php print $locality; ?></div><?php print $region ? '' : ''; ?>
     <?php endif; ?>
     <?php if ($region): ?>
-      <span class="region"><?php print $region; ?></span>
+      <div class="region"><?php print $region; ?></div>
     <?php endif; ?>
     <?php if ($postal_code): ?>
       <span class="postal-code"><?php print $postal_code; ?></span>
