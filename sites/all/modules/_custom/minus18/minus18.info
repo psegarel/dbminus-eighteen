@@ -2,3 +2,6 @@ name = Minus 18 Utilities
 description = "Provides various custom functions"
 package = Minus 18
 core = 7.x
+
+; Dependencies
+dependencies[] = contactinfo

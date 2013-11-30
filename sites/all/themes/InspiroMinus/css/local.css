@@ -11,6 +11,11 @@
 #controls-container	{ 	background:#000;
 					}
 					
+.contact-block, .contact-block a, 
+.contact-block p ,
+.contact-block #block-contactinfo-hcard .street-address,
+.contact-block #block-contactinfo-hcard .locality { color:#000;}
+	
 .social-network	{ color:#fff;
 				}
 										

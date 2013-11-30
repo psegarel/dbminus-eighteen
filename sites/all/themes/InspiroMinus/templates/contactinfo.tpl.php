@@ -67,6 +67,15 @@
     <?php if ($street_address): ?>
       <div class="street-address"><?php print $street_address; ?></div>
     <?php endif; ?>
+    <?php if ($street_address_2): ?>
+      <div class="street-address"><?php print $street_address_2; ?></div>
+    <?php endif; ?>
+    <?php if ($street_address_3): ?>
+      <div class="street-address"><?php print $street_address_3; ?></div>
+    <?php endif; ?>
+    <?php if ($district): ?>
+      <div class="street-address"><?php print $district; ?></div>
+    <?php endif; ?>
     <?php if ($locality): ?>
       <div class="locality"><?php print $locality; ?></div><?php print $region ? '' : ''; ?>
     <?php endif; ?>

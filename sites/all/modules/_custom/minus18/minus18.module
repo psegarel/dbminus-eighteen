@@ -10,6 +10,117 @@ function minus18_preprocess_page(&$variables)
 }
 
 
-function minus18_preprocess_block(&$variables)
+function minus18_form_alter(&$form, &$form_state, $form_id)
 {
+	$default_values = _minus18_get_contactinfo();
+	
+	if($form_id == 'contactinfo_admin_settings'){
+		
+		// Adds some extra fields
+		$form['contactinfo']['adr']['street-address-2'] = array('#type'=>'textfield', 
+																'#title'	=> '',
+																'#default_value' => $default_values['adr']['street-address-2'],
+															);
+		
+		$form['contactinfo']['adr']['street-address-3'] = array('#type'=>'textfield', 
+																'#title'	=> '',
+																'#default_value' => $default_values['adr']['street-address-3'],
+															);
+		
+		$form['contactinfo']['adr']['district'] = array('#type'=>'textfield', 
+																'#title'	=> 'District',
+																'#default_value' => $default_values['adr']['district'],
+															);
+		$locality = $form['contactinfo']['adr']['locality'];
+		$region = $form['contactinfo']['adr']['region'];
+		$postalcode = $form['contactinfo']['adr']['postal-code'];
+		$countryname  = $form['contactinfo']['adr']['country-name'];
+		
+		//Unset the previous values in order to inssert street address 2 field, after street address
+		unset($form['contactinfo']['adr']['locality']);
+		unset($form['contactinfo']['adr']['region']);
+		unset($form['contactinfo']['adr']['postal-code']);
+		unset($form['contactinfo']['adr']['country-name']);
+		
+		$form['contactinfo']['adr']['locality'] = $locality;
+		$form['contactinfo']['adr']['region'] = $region;
+		$form['contactinfo']['adr']['postal-code'] = $postalcode;
+		$form['contactinfo']['adr']['country-name'] = $countryname;
+		
+		//dsm($form);
+	}
+}
+
+function minus18_preprocess_contactinfo(&$variables)
+{
+	$default_values = _minus18_get_contactinfo();
+	if($default_values){
+		$variables['street_address_2'] = $default_values['adr']['street-address-2'];
+		$variables['street_address_3'] = $default_values['adr']['street-address-3'];
+		$variables['district'] = $default_values['adr']['district'];
+	}
+}
+
+/**
+ * Overrides the Contact Info module 
+ * Helper function to return saved contact information.
+ *
+ * @return array
+ *   All contact information saved from the settings form.
+ */
+function _minus18_get_contactinfo() {
+
+  $variables = minus18_variable_info(array());
+  $default = $variables['contactinfo']['default'];
+
+  // Get saved contact information.
+  $contactinfo = variable_get('contactinfo', $default);
+
+  // Merge default values and saved data to ensure all array keys are present.
+  return array_merge($default, $contactinfo);
+}
+
+/**
+ * Overrides the Contact Info module 
+ * Implements hook_variable_info().
+ */
+function minus18_variable_info($options) {
+  $variable['contactinfo'] = array(
+    'title' => t('Contact information'),
+    'type' => 'array',
+    'default' => array(
+      'type' => 'personal',
+      'fn_n' => array(
+        'given-name' => '',
+        'family-name' => '',
+      ),
+      'org' => '',
+      'use_site_name' => 0,
+      'tagline' =>  '',
+      'use_site_slogan' => 0,
+      'adr' => array(
+        'street-address' => '',
+		//Add some extra fields here
+        'street-address-2' => '',
+        'street-address-3' => '',
+        'district' => '',
+		// end of extra fields
+        'locality' => '',
+        'region' => '',
+        'postal-code' => '',
+        'country-name' => '',
+      ),
+      'location' => array(
+        'longitude' => '',
+        'latitude' => '',
+      ),
+      'phone' => array(
+        'voice' => '',
+        'fax' => '',
+      ),
+      'email' => '',
+    ),
+  );
+
+  return $variable;
 }
