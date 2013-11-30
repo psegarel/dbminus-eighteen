@@ -1,3 +1,9 @@
+#header-right { display:none;
+    width: 330px;
+    height: 80px;
+    background: url("/sites/all/themes/InspiroB/images/stripes_black.png") repeat-x scroll 0px 0px rgb(255, 255, 255);
+}
+
 #block-views-portfolio-client-images-block {	padding-top: 0;
 }
 
@@ -5,7 +11,7 @@
     width: 280px;
     /*background: url("/sites/all/themes/InspiroB/images/world_map.png") no-repeat scroll 40px 50px transparent;*/
 	background: none;
-    padding: 20px;
+    padding: 20px 20px 20px 0;
     float: left;
 }
 #controls-container	{ 	background:#000;

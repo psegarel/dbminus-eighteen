@@ -49,7 +49,7 @@
     <?php endif; ?>
 
     <?php if ($org): ?>
-      <div class="org"><?php print $org; ?></div>
+      <h2 class="org"><?php print $org; ?></h2>
     <?php endif; ?>
   </div>
 <?php else: ?>
