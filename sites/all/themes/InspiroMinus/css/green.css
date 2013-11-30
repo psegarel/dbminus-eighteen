@@ -1,0 +1,40 @@
+/* InspiroMinus Colors GREEN */
+
+
+h1, h2, h3, h4, h5, h6 { color: #666666;}
+
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: #666666;}
+
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover { color: #536361;}
+
+h2 { color: #666666;}
+#navigation .selector { background: #92c83e;}
+#navigation #main-menu > ul > li > a.active {background: none repeat scroll 0 0 #92c83e;  color: #FFFFFF;}
+#navigation #main-menu > ul > li > a.active-trail {	background-color: #92c83e;color: #fff;}
+
+
+body a { color: #666666;}
+
+
+body a:hover { text-decoration: none; color: #536361;}
+
+.progressbar-yellow .progressbar-inner{background-color:#92c83e;}
+
+.progressbar .progressbar-inner{background-color:#92c83e;}
+
+.field-name-field-tags a{ background: #92c83e; }
+
+.form-submit {background-color:#92c83e; color:#FFF;}
+
+.links li a {background-color:#92c83e; color:#FFF;}
+
+
+.links li a:hover {  background-color: #536361;  color: #FFF;}
+
+.pictured { background-color:#92c83e; color:#FFF;}
+
+.button { background-color:#92c83e; color:#FFF;}
+
+.button a:hover { background-color:#536361; }

@@ -4,6 +4,7 @@ core = 7.x
 
 base theme = InspiroB
 
+stylesheets[all][] = css/green.css
 stylesheets[all][] = css/local.css
 
 regions[header_features]= Header Features
