@@ -103,7 +103,7 @@
     <?php foreach ($phones as $phone): ?>
       <?php if ($phone): ?>
         <div class="">
-			<i class="fa fa-phone"></i> <?php // print t('Phone'); ?>&nbsp;&nbsp;<?php print $phone; ?>
+			<i class="fa fa-phone fa-lg"></i>&nbsp;&nbsp;<?php print $phone; ?>
 		</div>
       <?php endif; ?>
     <?php endforeach; ?>
@@ -111,7 +111,7 @@
     <?php foreach ($faxes as $fax): ?>
       <?php if ($fax): ?>
         <div class="">
-			<?php print t('Fax'); ?> <?php print $fax; ?>
+			<i class="fa fa-print fa-lg"></i>&nbsp;&nbsp;<?php print $fax; ?>
 		</div>
       <?php endif; ?>
     <?php endforeach; ?>
@@ -120,7 +120,7 @@
 	<br/>
 
   <?php if ($email): ?>
-    <i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="<?php print $email_url; ?>" class=""><?php print $email; ?></a>
+    <i class="fa fa-envelope fa-lg"></i>&nbsp;&nbsp;<a href="<?php print $email_url; ?>" class=""><?php print $email; ?></a>
   <?php endif; ?>
 
 </div>
