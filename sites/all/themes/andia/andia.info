@@ -1,0 +1,25 @@
+name = Andia
+description = A Twitter bootstrap theme.
+core = 7.x
+
+stylesheets[all][] = assets/bootstrap/css/bootstrap.min.css
+stylesheets[all][] = assets/prettyPhoto/css/prettyPhoto.css
+stylesheets[all][] = assets/css/flexslider.css
+stylesheets[all][] = assets/css/font-awesome.css
+stylesheets[all][] = assets/css/style.css
+
+scripts[] = assets/js/jquery.flexslider.js
+scripts[] = assets/js/jquery.tweet.js
+scripts[] = assets/js/jflickrfeed.js
+scripts[] = assets/js/jquery.ui.map.min.js
+scripts[] = assets/js/jquery.quicksand.js
+scripts[] = assets/prettyPhoto/js/jquery.prettyPhoto.js
+scripts[] = assets/js/scripts.js
+
+
+
+regions[content] = Content
+regions[help] = Help
+regions[header] = Header
+regions[highlighted] = Highlighted
+regions[footer] = Footer
