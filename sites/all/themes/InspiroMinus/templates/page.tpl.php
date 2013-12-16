@@ -76,8 +76,8 @@
             print drupal_render($main_menu_tree);
           ?>
         </div>
-        <?php print render($page['header_left']); ?> </nav>
-      <div id="header-right"> <?php print render($page['header_right']); ?> </div>
+        <?php // print render($page['header_left']); ?> </nav>
+      <div id="header-right"> <?php // print render($page['header_right']); ?> </div>
     </header>
   </div>
   <?php if(!drupal_is_front_page()): ?>

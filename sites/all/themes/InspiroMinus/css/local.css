@@ -6,6 +6,13 @@
     background: url("/sites/all/themes/InspiroB/images/stripes_black.png") repeat-x scroll 0px 0px rgb(255, 255, 255);
 }
 
+#navigation {
+    position: relative;
+    display: block;
+    height: 80px;
+    width: 100%;
+}
+
 #block-views-portfolio-client-images-block {	padding-top: 0;
 }
 

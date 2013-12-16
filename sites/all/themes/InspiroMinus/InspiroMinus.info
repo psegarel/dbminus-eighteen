@@ -7,6 +7,8 @@ base theme = InspiroB
 stylesheets[all][] = css/green.css
 stylesheets[all][] = css/local.css
 
+fonts[google_fonts_api][] = "Roboto&subset=latin-ext#300"
+
 regions[header_features]= Header Features
 regions[header_left]    = Header Left
 regions[header_right]   = Header Right
