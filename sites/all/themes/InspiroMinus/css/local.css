@@ -34,11 +34,42 @@
 .social-network	{ color:#fff;
 				}
 
+body, p {    font-family: “Lucida Grande”, sans-serif;
+					font-size: 15px;
+					font-style: normal;
+					font-weight: 300;
+					text-transform: normal;
+					letter-spacing: normal;
+					line-height: 1.5em;
+		    }
+
+h3 , h3 a { font-size: 1.2em;
+	        font-weight:500;
+		}
+
+.grid-item a { font-size: 1.1em;
+				font-family: 'Roboto';}
+		
 #navigation #main-menu > ul a { font-size: 1.2em;
+								font-family: 'Roboto';
 							    height: 80px;
 							    line-height: 80px;
 							    color: rgb(137, 137, 137);
 							    padding: 0px 15px;
 							    text-decoration: none;
-}				
-										
+}	
+			
+#firstline {
+    font-family: 'Roboto',sans-serif;
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+	text-shadow: 3px 3px 3px #aaa; 
+    /*background-image: url("../images/transparent-bg.png");*/
+	background:none;
+    text-decoration: none;
+    font-size: 34px;
+    padding: 4px 13px 7px;
+    float: left;
+    display: block;
+    line-height: normal;
+}								

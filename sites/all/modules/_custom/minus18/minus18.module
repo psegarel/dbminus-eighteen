@@ -2,12 +2,15 @@
 
 function minus18_preprocess_page(&$variables)
 {
+	_minus_18_get_social_networks($variables);
+	
 	if( isset($variables['node']) ){
 		if($variables['node']->type == 'portfolio'){
 			//whatever happens here!
 		}
 	}
 }
+
 
 
 function minus18_form_alter(&$form, &$form_state, $form_id)
@@ -36,7 +39,7 @@ function minus18_form_alter(&$form, &$form_state, $form_id)
 		$postalcode = $form['contactinfo']['adr']['postal-code'];
 		$countryname  = $form['contactinfo']['adr']['country-name'];
 		
-		//Unset the previous values in order to inssert street address 2 field, after street address
+		//Unset the previous values in order to insert street address 2 field, after street address
 		unset($form['contactinfo']['adr']['locality']);
 		unset($form['contactinfo']['adr']['region']);
 		unset($form['contactinfo']['adr']['postal-code']);
@@ -124,3 +127,62 @@ function minus18_variable_info($options) {
 
   return $variable;
 }
+
+function _minus_18_get_social_networks(&$variables)
+{
+	$social_exists = theme_get_setting('social_links', 'InspiroMinus');
+	if($social_exists){
+		
+		$social_networks = array();
+		
+		// Weixin
+		$weixin = array( 	'name'	=> 'weixin',
+							'user' => 'weixin_username',
+							'website'	=> 'https://wechat.com', // Omit slash at the end
+							'image'	=> 'weixin.png',
+							);
+							
+		//$social_networks[] = $twitter;	
+		
+		// Facebook
+		$facebook = array( 	'name'	=> 'facebook',
+							'user' => 'facebook_username',
+							'website'	=> 'http://www.facebook.com', // Omit slash at the end
+							'fa-icon'	=> 'fa-facebook',
+							);
+							
+		$social_networks[] = $facebook;	
+		
+		// Twitter
+		$twitter = array( 	'name'	=> 'twitter',
+							'user' => 'twitter_username',
+							'website'	=> 'http://www.twitter.com', // Omit slash at the end
+							'fa-icon'	=> 'fa-twitter',
+							);
+							
+		$social_networks[] = $twitter;					
+		
+		foreach($social_networks as $social){
+			
+			$username = theme_get_setting( $social['user'], 'InspiroMinus');		
+			if($username){
+				$social_link = '<li><a class="social-network" '; 
+				$social_link .= 'href="'.$social['website'].'/'.check_plain(theme_get_setting($social['user'], 'InspiroMinus')).'" '; 
+				$social_link .= ' target=\"_blank\" rel=\"me\">';
+				if(isset($social['fa-icon']))
+					$social_link .= '<i class="fa fa-lg '.$social['fa-icon'].'"></i>&nbsp;</a></li>';
+				else
+					$social_link .= '<img src="sites/all/themes/InspiroMinus/images/"'.$social['image'].'/></a>';
+				$variables['social_networks'][] = $social_link;
+				
+			}
+		}
+	}
+}
+
+
+
+
+
+
+

@@ -1,24 +1,32 @@
 /* InspiroMinus Colors GREEN */
 
 
-h1, h2, h3, h4, h5, h6 { color: #666666;}
+h1, h2, h4, h5, h6 { color: #536361;}
 
 
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: #666666;}
+h1 a, h2 a, h4 a, h5 a, h6 a { color: #536361;}
+h3 , h3 a { color: #92c83e;}
 
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover { color: #92c83e;}
 
-h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover { color: #536361;}
-
-h2 { color: #666666;}
+h2 { color: #536361;}
 #navigation .selector { background: #92c83e;}
 #navigation #main-menu > ul > li > a.active {background: none repeat scroll 0 0 #92c83e;  color: #FFFFFF;}
-#navigation #main-menu > ul > li > a.active-trail {	background-color: #92c83e;color: #fff;}
+#navigation #main-menu > ul > li > a.active-trail {	background-color: #536361;color: #fff;}
+#navigation #main-menu > ul > li > a:hover {	background-color: #536361;color: #fff;}
 
 
-body a { color: #666666;}
+body a { color: #536361;}
+.item-list ul li h3 a { color: #92c83e;}
+.item-list ul li h3 a:hover  { color: #536361;}
 
+.grid-item a	{ color: #536361;}
+.grid-item a:hover { color: #92c83e;}
 
 body a:hover { text-decoration: none; color: #536361;}
+	
+
+#footer-area a:hover { color: #92c83e;}	
 
 .progressbar-yellow .progressbar-inner{background-color:#92c83e;}
 
