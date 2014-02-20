@@ -9,6 +9,10 @@ function minus18_preprocess_page(&$variables)
 			//whatever happens here!
 		}
 	}
+	
+	if($variables['is_front']){
+		//dsm($variables);
+	}
 }
 
 

@@ -1,5 +1,41 @@
+.site_slogan { font-size: 2.5em;
+	background:#536361;
+	color:#92c83e;
+	padding: .83em 10px;
+	margin-left:2px;
+	margin-top:46px;
+	line-height:140%;
+}
+
+@media (max-width: 979px) {
+	.features_top_div { display:none;}
+}
+
+@media (max-width: 767px) {
+	.site_slogan { 
+		font-size: 2.1em;
+		background:#536361;
+		padding: 1em 10px;
+		margin-left:2px;
+		margin-top:46px;
+		line-height:160%;
+	}
+}
+
+@media (max-width: 480px) {
+	.site_slogan { 
+		font-size: 1.2em;
+		background:#536361;
+		padding: 2.4em 10px;
+		margin-left:2px;
+		margin-top:46px;
+		line-height:160%;
+	}
+}
+
 #secondline	{ display:none;
 			}
+			
 #header-right { display:none;
     width: 330px;
     height: 80px;
