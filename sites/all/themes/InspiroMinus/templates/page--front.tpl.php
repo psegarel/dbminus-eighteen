@@ -83,10 +83,13 @@
   <?php if (theme_get_setting('backgroundText', 'InspiroMinus')): ?>
   <div id="body" class="body" >
     <div>
-      <div id="headertxt"><a href="#" id="firstline"></a> <a href="#" id="secondline"></a> <?php if (theme_get_setting('backgroundButton', 'InspiroMinus')): ?><a href="#" id="link"></a>   <?php endif; ?></div>
+      <div id="headertxt"><a href="#" id="firstline"></a> <a href="#" id="secondline"></a> 
+		  <?php if (theme_get_setting('backgroundButton', 'InspiroMinus')): ?><a href="#" id="link"></a>   
+	  	<?php endif;?></div>
     </div>
   </div>
   <?php endif; ?>
+  
   <?php endif; ?>
   <?php if ($page['footer']): ?>
   <?php if(!drupal_is_front_page()): ?>
