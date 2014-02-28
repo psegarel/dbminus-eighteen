@@ -36,6 +36,8 @@
  * - $email_url: The href for the mailto link.
  * - $email: The email address value.
  */
+global $language;
+
 ?>
 <div id="<?php print $id; ?>" class="vcard">
 
@@ -54,41 +56,61 @@
   </div>
 <?php else: ?>
   <?php if ($org): ?>
-    <div class="fn org"><?php print $org; ?></div>
+	  
+	  <?php if($language->language == 'en'):?>
+   	   	<div class="fn org"><?php print $org; ?></div>
+ 	 <?php endif; ?>
+	  
+	  <?php if($language->language == 'zh-hans'):?>
+		  <?php if ($tagline): ?>
+		    <div class="tagline"><?php print $tagline; ?></div>
+		  <?php endif; ?>
+ 	 <?php endif; ?>
+	 
   <?php endif; ?>
 <?php endif; ?>
 
-<?php if ($tagline): ?>
-  <div class="tagline"><?php print $tagline; ?></div>
+
+
+<!-- English Address -->
+<?php if($language->language == 'en'):?>
+	<?php if ($street_address || $locality || $region || $postal_code || $country): ?>
+	  <div class="adr">
+	    <?php if ($street_address): ?>
+	      <div class="street-address"><?php print $street_address; ?></div>
+	    <?php endif; ?>
+	    <?php if ($street_address_2): ?>
+	      <div class="street-address"><?php print $street_address_2; ?></div>
+	    <?php endif; ?>
+	    <?php if ($street_address_3): ?>
+	      <div class="street-address"><?php print $street_address_3; ?></div>
+	    <?php endif; ?>
+	    <?php if ($district): ?>
+	      <div class="street-address"><?php print $district; ?></div>
+	    <?php endif; ?>
+	    <?php if ($locality): ?>
+	      <div class="locality"><?php print $locality; ?></div><?php print $region ? '' : ''; ?>
+	    <?php endif; ?>
+	    <?php if ($region): ?>
+	      <div class="region"><?php print $region; ?></div>
+	    <?php endif; ?>
+	    <?php if ($postal_code): ?>
+	      <span class="postal-code"><?php print $postal_code; ?></span>
+	    <?php endif; ?>
+	    <?php if ($country): ?>
+	      <span class="country-name"><?php print $country; ?></span>
+	    <?php endif; ?>
+	  </div>
+	<?php endif; ?>
 <?php endif; ?>
 
-<?php if ($street_address || $locality || $region || $postal_code || $country): ?>
-  <div class="adr">
-    <?php if ($street_address): ?>
-      <div class="street-address"><?php print $street_address; ?></div>
-    <?php endif; ?>
-    <?php if ($street_address_2): ?>
-      <div class="street-address"><?php print $street_address_2; ?></div>
-    <?php endif; ?>
-    <?php if ($street_address_3): ?>
-      <div class="street-address"><?php print $street_address_3; ?></div>
-    <?php endif; ?>
-    <?php if ($district): ?>
-      <div class="street-address"><?php print $district; ?></div>
-    <?php endif; ?>
-    <?php if ($locality): ?>
-      <div class="locality"><?php print $locality; ?></div><?php print $region ? '' : ''; ?>
-    <?php endif; ?>
-    <?php if ($region): ?>
-      <div class="region"><?php print $region; ?></div>
-    <?php endif; ?>
-    <?php if ($postal_code): ?>
-      <span class="postal-code"><?php print $postal_code; ?></span>
-    <?php endif; ?>
-    <?php if ($country): ?>
-      <span class="country-name"><?php print $country; ?></span>
-    <?php endif; ?>
-  </div>
+<!-- Chinese Address -->
+<?php if($language->language == 'zh-hans'):?>
+	<?php if ($extended_address): ?>
+	  <div class="adr">
+	      <div class="street-address"><?php print $extended_address; ?></div>
+	  </div>
+	<?php endif; ?>
 <?php endif; ?>
 
 <?php if ($longitude || $latitude): ?>
