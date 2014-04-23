@@ -9,9 +9,6 @@ function minus18_preprocess_page(&$variables)
 			//whatever happens here!
 		}
 	}
-	
-	if($variables['is_front']){
-	}
 }
 
 
@@ -52,8 +49,6 @@ function minus18_form_alter(&$form, &$form_state, $form_id)
 		$form['contactinfo']['adr']['region'] = $region;
 		$form['contactinfo']['adr']['postal-code'] = $postalcode;
 		$form['contactinfo']['adr']['country-name'] = $countryname;
-		
-		//dsm($form);
 	}
 }
 
